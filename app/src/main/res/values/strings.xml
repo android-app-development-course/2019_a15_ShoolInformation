@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">TemplateAppProject</string>
+    <string name="app_browser_name">通用浏览器</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <string name="menu_notifications">通知</string>
+    <string name="menu_issues">问题</string>
+    <string name="menu_starred">收藏</string>
+    <string name="menu_search">搜索</string>
+    <string name="menu_settings">设置</string>
+    <string name="menu_about">关于</string>
+
+    <string name="about_copyright">© %1$s xuexiangjys All rights reserved.</string>
+    <string name="about_item_homepage">访问官网</string>
+    <string name="about_item_author_github">关于作者</string>
+    <string name="about_item_add_qq_group">加入QQ交流群</string>
+    <string name="url_project_github">https://github.com/xuexiangjys/TemplateAppProject</string>
+    <string name="url_author_github">https://github.com/xuexiangjys</string>
+    <string name="url_add_qq_group">http://qm.qq.com/cgi-bin/qm/qr?k=tiP-E6rDf0y77PRNfp2lNVcc9RsglPCM</string>
+
+    <string name="lab_yes">是</string>
+    <string name="lab_no">否</string>
+    <string name="lab_open_third_app">是否允许页面打开第三方应用?</string>
+
+    <!--自定义-->
+    <string name="menu_home">首页</string>
+    <string name="menu_news">动态</string>
+    <string name="menu_profile">我的</string>
+    <string name="application_center">应用中心</string>
+    <string name="title_family_edu">家教信息</string>
+
+<!--    下拉刷新样式-->
+    <string name="style_refresh_layout">com.scwang.smartrefresh.header.WaveSwipeHeader</string>
+
+
+
+
+
+    <string name="title_activity_family_edu">FamilyEduActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <!--    下拉样式-->
+    <string name="item_head_style_wave_swipe">全屏水滴</string>
+
+    <!--    网络协会空课室链接-->
+    <string name="empty_classrom_link">https://i.scnu.edu.cn/zixi/?from=qrcode</string>
+</resources>

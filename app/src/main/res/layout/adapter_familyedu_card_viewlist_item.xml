@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/activity_horizontal_margin"
+    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    app:cardBackgroundColor="@color/xui_config_color_white"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:cardPreventCornerOverlap="true"
+    app:contentPaddingTop="5dp"
+    app:contentPaddingBottom="10dp"
+    app:contentPaddingLeft="@dimen/activity_horizontal_margin"
+    app:contentPaddingRight="@dimen/activity_horizontal_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/TextStyle.Content"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="1dp"
+                    android:ellipsize="end"
+                    android:gravity="start|center_vertical"
+                    android:singleLine="false"
+                    android:text="辅导科目:"
+                    android:textColor="@color/xui_config_color_pure_black" />
+                <TextView
+                    android:id="@+id/tv_subject"
+                    style="@style/TextStyle.Content"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginStart="10dp"
+                    android:ellipsize="end"
+                    android:gravity="start|center_vertical"
+                    android:maxLines="2"
+                    android:text="初一物理"
+                    android:textColor="@color/xui_config_color_pure_black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/TextStyle.Content"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="1dp"
+                    android:ellipsize="end"
+                    android:gravity="start|center_vertical"
+                    android:singleLine="false"
+                    android:text="教师要求:"
+                    android:textColor="@color/xui_config_color_pure_black" />
+                <TextView
+                    android:id="@+id/tv_teacherReq"
+                    style="@style/TextStyle.Content"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginStart="10dp"
+                    android:ellipsize="end"
+                    android:gravity="start|center_vertical"
+                    android:maxLines="2"
+                    android:singleLine="false"
+                    android:text="男/大三"
+                    android:textColor="@color/xui_config_color_pure_black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/TextStyle.Content"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="1dp"
+                    android:ellipsize="end"
+                    android:gravity="start|center_vertical"
+                    android:text="辅导区域:"
+                    android:textColor="@color/xui_config_color_pure_black" />
+                <TextView
+                    android:id="@+id/tv_area"
+                    style="@style/TextStyle.Content"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginStart="10dp"
+                    android:ellipsize="end"
+                    android:gravity="start|center_vertical"
+                    android:text="番禺区"
+                    android:textColor="@color/xui_config_color_pure_black" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
