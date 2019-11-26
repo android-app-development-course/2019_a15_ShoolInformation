@@ -15,20 +15,16 @@
  *
  */
 
-package team.A15.easyschool.fragment.FamilyEdu;
+package team.A15.easyschool.fragment.familyEdu;
 
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xuexiang.xpage.annotation.Page;
-import com.xuexiang.xui.adapter.FragmentAdapter;
 import com.xuexiang.xui.adapter.recyclerview.RecyclerViewHolder;
 import com.xuexiang.xui.utils.WidgetUtils;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
@@ -125,19 +121,16 @@ public class FamilyEduFragment extends BaseFragment {
         smartRefreshLayout.setDisableContentWhenLoading(true);
         smartRefreshLayout.setDisableContentWhenRefresh(true);
 
-        familyEduCardViewListAdapter.setOnItemClickListener(new RecyclerViewHolder.OnItemClickListener<FamilyEduInfo>() {
-            @Override
-            public void onItemClick(View itemView, FamilyEduInfo item, int position) {
-                Bundle params = new Bundle();
-                params.putString(FamilyEduDtiFragment.KEY_NUM, item.getNum());
-                params.putString(FamilyEduDtiFragment.KEY_AREA,item.getArea());
-                params.putString(FamilyEduDtiFragment.KEY_GRADE,item.getStuGrade());
-                params.putString(FamilyEduDtiFragment.KEY_REQUIRE, item.getRequirement());
-                params.putString(FamilyEduDtiFragment.KEY_SEX, item.getStuSex());
-                params.putString(FamilyEduDtiFragment.KEY_SUBJECT, item.getSubject());
-                params.putString(FamilyEduDtiFragment.KEY_DETAIL, item.getDetail());
-                openPage(FamilyEduDtiFragment.class, params);
-            }
+        familyEduCardViewListAdapter.setOnItemClickListener((itemView, item, position) -> {
+            Bundle params = new Bundle();
+            params.putString(FamilyEduDtiFragment.KEY_NUM, item.getNum());
+            params.putString(FamilyEduDtiFragment.KEY_AREA,item.getArea());
+            params.putString(FamilyEduDtiFragment.KEY_GRADE,item.getStuGrade());
+            params.putString(FamilyEduDtiFragment.KEY_REQUIRE, item.getRequirement());
+            params.putString(FamilyEduDtiFragment.KEY_SEX, item.getStuSex());
+            params.putString(FamilyEduDtiFragment.KEY_SUBJECT, item.getSubject());
+            params.putString(FamilyEduDtiFragment.KEY_DETAIL, item.getDetail());
+            openPage(FamilyEduDtiFragment.class, params);
         });
     }
 

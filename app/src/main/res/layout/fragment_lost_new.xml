@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                android:id="@+id/stv_name"
+                style="@style/EditInfoItem"
+                app:sEditTextButtonType="clear"
+                app:sEditTextHint="物品" />
+
+            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                android:id="@+id/stv_price"
+                style="@style/EditInfoItem"
+                android:inputType="number"
+                app:sEditTextButtonType="clear"
+                app:sEditTextHint="联系方式，例如微信、手机号等" />
+
+            <com.xuexiang.xui.widget.edittext.MultiLineEditText
+                android:id="@+id/et_description"
+                android:layout_width="match_parent"
+                app:mlet_showSurplusNumber="false"
+                app:mlet_hintText="失物的详尽描述"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
+
+            <com.xuexiang.xui.widget.button.roundbutton.RoundButton
+                style="@style/RoundButton.Auto"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:text="发布"
+                android:textSize="20sp"
+                android:textColor="@color/xui_default_round_btn_white_text"
+                app:rb_backgroundColor="@color/xui_config_color_blue"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

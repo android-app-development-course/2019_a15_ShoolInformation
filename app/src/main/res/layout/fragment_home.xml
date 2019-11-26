@@ -1,20 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (C) 2019 xuexiangjys(xuexiangjys@163.com)
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~       http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  ~
-  -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -22,116 +6,126 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.xuexiang.xui.widget.layout.XUILinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/xui_config_color_white"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp">
-
-        <team.A15.easyschool.widget.RadiusImageBanner
-            android:id="@+id/rib_news"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:bb_barPaddingBottom="10dp"
-            app:bb_scale="0.4317" />
-
-    </com.xuexiang.xui.widget.layout.XUILinearLayout>
-
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@color/xui_config_color_white"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="20dp"
-            android:columnCount="2">
-            <TextView
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+            <com.xuexiang.xui.widget.layout.XUILinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_columnSpan="2"
-                android:text="@string/application_center"
-                android:textSize="15sp"
-                />
-            <com.xuexiang.xui.widget.layout.XUILinearLayout
-                style="@style/application_button"
-                >
-                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                    android:id="@+id/stv_family_edu"
-                    style="@style/superText_app"
-                    app:sLeftTextString="家教信息"
-                    app:sRightIconRes="@drawable/ic_family_edu"
-                    android:clickable="true"
-                    />
+                android:background="@color/xui_config_color_white"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
+
+                <team.A15.easyschool.widget.RadiusImageBanner
+                    android:id="@+id/rib_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:bb_barPaddingBottom="10dp"
+                    app:bb_scale="0.4317" />
+
             </com.xuexiang.xui.widget.layout.XUILinearLayout>
-
-            <com.xuexiang.xui.widget.layout.XUILinearLayout
-                style="@style/application_button"
-                >
-                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                    style="@style/superText_app"
-                    app:sLeftTextString="比赛组队"
-                    app:sRightIconRes="@drawable/ic_team"
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/xui_config_color_white"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="20dp"
+                android:columnCount="2">
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_columnSpan="2"
+                    android:text="@string/application_center"
+                    android:textSize="15sp"
                     />
-            </com.xuexiang.xui.widget.layout.XUILinearLayout>
+                <com.xuexiang.xui.widget.layout.XUILinearLayout
+                    style="@style/application_button"
+                    >
+                    <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                        android:id="@+id/stv_family_edu"
+                        style="@style/superText_app"
+                        app:sLeftTextString="家教信息"
+                        app:sRightIconRes="@drawable/ic_family_edu"
+                        android:clickable="true"
+                        />
+                </com.xuexiang.xui.widget.layout.XUILinearLayout>
 
-            <com.xuexiang.xui.widget.layout.XUILinearLayout
-                style="@style/application_button"
-                >
-                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                    android:id="@+id/stv_second_hand"
-                    style="@style/superText_app"
-                    app:sLeftTextString="闲置交易"
-                    app:sRightIconRes="@drawable/ic_second_hand"
-                    />
-            </com.xuexiang.xui.widget.layout.XUILinearLayout>
+                <com.xuexiang.xui.widget.layout.XUILinearLayout
+                    style="@style/application_button"
+                    >
+                    <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                        android:id="@+id/stv_second_hand"
+                        style="@style/superText_app"
+                        app:sLeftTextString="闲置交易"
+                        app:sRightIconRes="@drawable/ic_second_hand"
+                        />
+                </com.xuexiang.xui.widget.layout.XUILinearLayout>
+                <com.xuexiang.xui.widget.layout.XUILinearLayout
+                    style="@style/application_button"
+                    >
+                    <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                        style="@style/superText_app"
+                        app:sLeftTextString="比赛组队"
+                        app:sRightIconRes="@drawable/ic_team"
+                        />
+                </com.xuexiang.xui.widget.layout.XUILinearLayout>
 
-            <com.xuexiang.xui.widget.layout.XUILinearLayout
-                style="@style/application_button"
-                >
-                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                    style="@style/superText_app"
-                    app:sLeftTextString="有偿跑腿"
-                    app:sRightIconRes="@drawable/ic_errands"
-                    />
-            </com.xuexiang.xui.widget.layout.XUILinearLayout>
 
-            <com.xuexiang.xui.widget.layout.XUILinearLayout
-                style="@style/application_button"
-                >
-                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                    style="@style/superText_app"
-                    app:sLeftTextString="寻物系统"
-                    app:sRightIconRes="@drawable/ic_lost"
-                    />
-            </com.xuexiang.xui.widget.layout.XUILinearLayout>
 
-<!--            <com.xuexiang.xui.widget.layout.XUILinearLayout-->
-<!--                style="@style/application_button"-->
-<!--                >-->
-<!--                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView-->
-<!--                    style="@style/superText_app"-->
-<!--                    app:sLeftTextString="家教信息"-->
-<!--                    app:sRightIconRes="@drawable/ic_home_fill"-->
-<!--                    />-->
-<!--            </com.xuexiang.xui.widget.layout.XUILinearLayout>-->
+                <com.xuexiang.xui.widget.layout.XUILinearLayout
+                    style="@style/application_button"
+                    >
+                    <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                        style="@style/superText_app"
+                        app:sLeftTextString="有偿跑腿"
+                        app:sRightIconRes="@drawable/ic_errands"
+                        />
+                </com.xuexiang.xui.widget.layout.XUILinearLayout>
 
-            <com.xuexiang.xui.widget.layout.XUILinearLayout
-                style="@style/application_button"
-                >
-                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                    style="@style/superText_app"
-                    android:id="@+id/stv_empty_classrom"
-                    app:sLeftTextString="空课室"
-                    app:sRightIconRes="@drawable/ic_empty_classroom"
-                    />
-            </com.xuexiang.xui.widget.layout.XUILinearLayout>
+                <com.xuexiang.xui.widget.layout.XUILinearLayout
+                    style="@style/application_button"
+                    >
+                    <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                        style="@style/superText_app"
+                        app:sLeftTextString="寻物系统"
+                        app:sRightIconRes="@drawable/ic_lost"
+                        />
+                </com.xuexiang.xui.widget.layout.XUILinearLayout>
 
-        </GridLayout>
+                <!--            <com.xuexiang.xui.widget.layout.XUILinearLayout-->
+                <!--                style="@style/application_button"-->
+                <!--                >-->
+                <!--                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView-->
+                <!--                    style="@style/superText_app"-->
+                <!--                    app:sLeftTextString="家教信息"-->
+                <!--                    app:sRightIconRes="@drawable/ic_home_fill"-->
+                <!--                    />-->
+                <!--            </com.xuexiang.xui.widget.layout.XUILinearLayout>-->
+
+                <com.xuexiang.xui.widget.layout.XUILinearLayout
+                    style="@style/application_button"
+                    >
+                    <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                        style="@style/superText_app"
+                        android:id="@+id/stv_empty_classrom"
+                        app:sLeftTextString="空课室"
+                        app:sRightIconRes="@drawable/ic_empty_classroom"
+                        />
+                </com.xuexiang.xui.widget.layout.XUILinearLayout>
+
+            </GridLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
 
 </LinearLayout>

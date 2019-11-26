@@ -22,44 +22,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <com.xuexiang.xui.widget.imageview.RadiusImageView
-                    android:id="@+id/iv_avatar"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_price"
-                    app:riv_is_circle="true" />
-
-                <TextView
-                    android:id="@+id/tv_price"
-                    style="@style/TextStyle.Explain"
-                    android:layout_gravity="end|center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:text="xuexiangjys"
-                    android:textColor="@color/xui_config_color_pure_black" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tv_tag"
-                style="@style/TextStyle.Explain"
-                android:padding="1dp"
-                android:textColor="@color/white"
-                android:layout_gravity="end|center_vertical"
-                android:background="@color/xui_config_color_50_blue"
-                android:text="Java" />
-
-        </FrameLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -107,7 +69,7 @@
 
         </LinearLayout>
         <TextView
-            android:id="@+id/tv_read"
+            android:id="@+id/tv_time"
             style="@style/TextStyle.Explain"
             android:layout_gravity="center_vertical|start"
             android:text="发布时间" />

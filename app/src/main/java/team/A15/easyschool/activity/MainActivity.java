@@ -35,7 +35,7 @@ import com.google.android.material.navigation.NavigationView;
 import team.A15.easyschool.R;
 import team.A15.easyschool.core.BaseActivity;
 import team.A15.easyschool.core.BaseFragment;
-import team.A15.easyschool.fragment.FamilyEdu.FamilyEduFragment;
+import team.A15.easyschool.fragment.familyEdu.FamilyEduFragment;
 import team.A15.easyschool.fragment.SettingsFragment;
 import team.A15.easyschool.fragment.home.HomeFragment;
 import team.A15.easyschool.fragment.news.NewsFragment;

@@ -1,14 +1,13 @@
 package team.A15.easyschool.fragment.SecHandGood;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.xuexiang.xaop.logger.XLogger;
 import com.xuexiang.xpage.annotation.Page;
-import com.xuexiang.xui.adapter.recyclerview.RecyclerViewHolder;
 import com.xuexiang.xui.utils.WidgetUtils;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
 
@@ -16,10 +15,7 @@ import butterknife.BindView;
 import team.A15.easyschool.DemoDataProvider;
 import team.A15.easyschool.R;
 import team.A15.easyschool.adapter.GoodCardViewListAdapter;
-import team.A15.easyschool.adapter.enity.FamilyEduInfo;
-import team.A15.easyschool.adapter.enity.GoodInfo;
 import team.A15.easyschool.core.BaseFragment;
-import team.A15.easyschool.fragment.FamilyEdu.FamilyEduDtiFragment;
 import team.A15.easyschool.utils.Utils;
 
 /**
@@ -83,11 +79,16 @@ public class SecHandFragment extends BaseFragment {
     protected void initListeners() {
         adapter.setOnItemClickListener((itemView, item, position) -> {
             Bundle params = new Bundle();
+            XLogger.i(item.getGoodName());
             params.putString(SecHandDtiFragment.KEY_NAME, item.getGoodName());
             params.putString(SecHandDtiFragment.KEY_PRICE, item.getPrice());
-            params.putString(SecHandDtiFragment.KEY_CONTACTWAY, item.getContactInfo());
+            params.putString(SecHandDtiFragment.KEY_CONTACT_WAY, item.getContactInfo());
             params.putString(SecHandDtiFragment.KEY_DESCRIPTION, item.getDescription());
-            openPage(FamilyEduDtiFragment.class, params);
+            openPage(SecHandDtiFragment.class, params);
         });
+
+        //发帖
+        floatingActionButton.setOnClickListener(view -> openPage(SecHandNewFragment.class));
     }
+
 }

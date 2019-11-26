@@ -39,19 +39,19 @@ import team.A15.easyschool.adapter.enity.NewsInfo;
 public class DemoDataProvider {
 
     public static String[] titles = new String[]{
-            "伪装者:胡歌演绎'痞子特工'",
-            "无心法师:生死离别!月牙遭虐杀",
-            "花千骨:尊上沦为花千骨",
-            "综艺饭:胖轩偷看夏天洗澡掀波澜",
-            "碟中谍4:阿汤哥高塔命悬一线,超越不可能",
+            "https://news.scnu.edu.cn/28034",
+            "https://news.scnu.edu.cn/26824",
+            "https://news.scnu.edu.cn/26325",
+            "https://news.scnu.edu.cn/25364",
+            "https://news.scnu.edu.cn/25199"
     };
 
     public static String[] urls = new String[]{//640*360 360/640=0.5625
-            "https://news.scnu.edu.cn/media/image/2019/11/20191115af6672.jpg",//伪装者:胡歌演绎"痞子特工"
-            "https://news.scnu.edu.cn/media/image/2019/06/2019061761b3b5.jpg",//无心法师:生死离别!月牙遭虐杀
-            "https://news.scnu.edu.cn/media/image/2019/09/20190920c1a6fc.jpg",//花千骨:尊上沦为花千骨
-            "https://news.scnu.edu.cn/media/image/2019/09/201909069e8e4f.jpg",//综艺饭:胖轩偷看夏天洗澡掀波澜
-            "https://news.scnu.edu.cn/media/image/2019/06/20190615902423.jpg",//碟中谍4:阿汤哥高塔命悬一线,超越不可能
+            "https://news.scnu.edu.cn/media/image/2019/11/20191115af6672.jpg",
+            "https://news.scnu.edu.cn/media/image/2019/09/201909306b4569.jpg",
+            "https://news.scnu.edu.cn/media/image/2019/09/20190920c1a6fc.jpg",
+            "https://news.scnu.edu.cn/media/image/2019/07/201907010dd858.jpg",
+            "https://news.scnu.edu.cn/media/image/2019/06/2019061761b3b5.jpg",
     };
 
     public static List<BannerItem> getBannerList() {

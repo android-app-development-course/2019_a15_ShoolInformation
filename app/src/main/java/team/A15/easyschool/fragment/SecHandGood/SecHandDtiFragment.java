@@ -1,15 +1,17 @@
 package team.A15.easyschool.fragment.SecHandGood;
 
+
 import android.widget.TextView;
 
+import com.xuexiang.xaop.logger.XLogger;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xrouter.annotation.AutoWired;
+import com.xuexiang.xrouter.launcher.XRouter;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
 
 import butterknife.BindView;
 import team.A15.easyschool.R;
 import team.A15.easyschool.core.BaseFragment;
-import team.A15.easyschool.fragment.FamilyEdu.FamilyEduDtiFragment;
 
 /**
  * @package: team.A15.easyschool.fragment.SecHandGood
@@ -19,12 +21,12 @@ import team.A15.easyschool.fragment.FamilyEdu.FamilyEduDtiFragment;
  * @version: 1.0
  */
 @Page(name = "物品详情", params = {SecHandDtiFragment.KEY_NAME, SecHandDtiFragment.KEY_PRICE,
-SecHandDtiFragment.KEY_CONTACTWAY, SecHandDtiFragment.KEY_DESCRIPTION})
+        SecHandDtiFragment.KEY_CONTACT_WAY, SecHandDtiFragment.KEY_DESCRIPTION})
 public class SecHandDtiFragment extends BaseFragment {
 //    public final static String KEY_IMAGE = "image";
     public final static String KEY_NAME = "name";
     public final static String KEY_PRICE = "price";
-    public final static String KEY_CONTACTWAY = "contactWay";
+    public final static String KEY_CONTACT_WAY = "contactWay";
     public final static String KEY_DESCRIPTION = "description";
 
     @AutoWired(name = KEY_NAME)
@@ -36,7 +38,7 @@ public class SecHandDtiFragment extends BaseFragment {
     @AutoWired(name = KEY_DESCRIPTION)
     String description;
 
-    @AutoWired(name = KEY_CONTACTWAY)
+    @AutoWired(name = KEY_CONTACT_WAY)
     String contactWay;
 
     /**
@@ -75,12 +77,16 @@ public class SecHandDtiFragment extends BaseFragment {
     protected void initViews() {
         update();
     }
+    @Override
+    protected void initArgs() {
+        XRouter.getInstance().inject(this);
+    }
 
     private void update(){
-        tv_name.setText(name);
-        tv_price.setText(price);
-        tv_contactWay.setText(contactWay);
-        tv_description.setText(description);
+        tv_name.setText("物品名称：     " + name);
+        tv_price.setText("物品价格：     " + price);
+        tv_contactWay.setText("联系方式：     " + contactWay);
+        tv_description.setText("具体描述：\n" + description);
     }
 }
 

@@ -26,14 +26,12 @@ import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
 
 import java.util.List;
 
-import butterknife.BindInt;
 import butterknife.BindView;
-import butterknife.OnItemClick;
 import team.A15.easyschool.DemoDataProvider;
 import team.A15.easyschool.R;
 import team.A15.easyschool.core.BaseFragment;
 import team.A15.easyschool.core.webview.AgentWebActivity;
-import team.A15.easyschool.fragment.FamilyEdu.FamilyEduFragment;
+import team.A15.easyschool.fragment.familyEdu.FamilyEduFragment;
 import team.A15.easyschool.fragment.SecHandGood.SecHandFragment;
 import team.A15.easyschool.widget.RadiusImageBanner;
 
@@ -97,7 +95,7 @@ public class HomeFragment extends BaseFragment {
         secondHand.setOnSuperTextViewClickListener(superTextView -> openNewPage(SecHandFragment.class));
 
 //        轮播图点击跳转
-        radiusImageBanner.setOnItemClickL(position -> AgentWebActivity.goWeb(getContext(), "https://www.baidu.com"));
+        radiusImageBanner.setOnItemClickL(position -> AgentWebActivity.goWeb(getContext(), bannerData.get(position).getTitle()));
     }
 
 

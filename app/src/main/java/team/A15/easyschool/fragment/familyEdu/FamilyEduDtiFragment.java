@@ -1,11 +1,10 @@
-package team.A15.easyschool.fragment.FamilyEdu;
+package team.A15.easyschool.fragment.familyEdu;
 
 import android.widget.TextView;
 
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xrouter.annotation.AutoWired;
 import com.xuexiang.xrouter.launcher.XRouter;
-import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
 
 import butterknife.BindView;
 import team.A15.easyschool.R;
