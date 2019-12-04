@@ -1,7 +1,5 @@
 package team.A15.easyschool.adapter.enity;
 
-import android.media.Image;
-
 
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobFile;
@@ -25,12 +23,22 @@ public class GoodInfo extends BmobObject {
      */
     private String description;
 
-    /**
-     * 物品图片
-     * 后期要改为后端云对应类型
-     */
-    private BmobFile image;
+//    /**
+//     * 物品图片
+//     * 后期要改为后端云对应类型
+//     */
+//    private BmobFile image;
 
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String imageUrl;
     /**
      * 物品价格
      */
@@ -42,9 +50,9 @@ public class GoodInfo extends BmobObject {
     private String contactInfo;
 
     /**
-     * 类型标签
+     * 交易方式,例如大学城面交，快递
      */
-    private String tag;
+    private String dealWay;
 
     /**
      * 发布时间
@@ -67,13 +75,13 @@ public class GoodInfo extends BmobObject {
         this.description = description;
     }
 
-    public BmobFile getImage() {
-        return image;
-    }
-
-    public void setImage(BmobFile image) {
-        this.image = image;
-    }
+//    public BmobFile getImage() {
+//        return image;
+//    }
+//
+//    public void setImage(BmobFile image) {
+//        this.image = image;
+//    }
 
     public String getPrice() {
         return price;
@@ -91,12 +99,12 @@ public class GoodInfo extends BmobObject {
         this.contactInfo = contactInfo;
     }
 
-    public String getTag() {
-        return tag;
+    public String getDealWay() {
+        return dealWay;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setDealWay(String dealWay) {
+        this.dealWay = dealWay;
     }
 
     public String getTime() {

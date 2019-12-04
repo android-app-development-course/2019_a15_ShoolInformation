@@ -33,6 +33,7 @@ import team.A15.easyschool.core.BaseFragment;
 import team.A15.easyschool.core.webview.AgentWebActivity;
 import team.A15.easyschool.fragment.familyEdu.FamilyEduFragment;
 import team.A15.easyschool.fragment.SecHandGood.SecHandFragment;
+import team.A15.easyschool.fragment.lost.lostFragment;
 import team.A15.easyschool.widget.RadiusImageBanner;
 
 
@@ -55,6 +56,12 @@ public class HomeFragment extends BaseFragment {
      */
     @BindView(R.id.stv_family_edu)
     SuperTextView familyEdu;
+
+    /**
+     * 家教信息
+     */
+    @BindView(R.id.stv_lost)
+    SuperTextView lost;
 
     /**
      * 空课室
@@ -90,6 +97,11 @@ public class HomeFragment extends BaseFragment {
         emptyClassrom.setOnSuperTextViewClickListener(superTextView -> {
             String url = "https://i.scnu.edu.cn/zixi/?from=qrcode";
             AgentWebActivity.goWeb(getContext(), url);
+        });
+
+//      寻物系统
+        lost.setOnSuperTextViewClickListener(superTextView -> {
+            openNewPage(lostFragment.class);
         });
 
         secondHand.setOnSuperTextViewClickListener(superTextView -> openNewPage(SecHandFragment.class));

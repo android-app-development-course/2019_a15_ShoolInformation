@@ -17,7 +17,8 @@ import team.A15.easyschool.core.BaseFragment;
  */
 @Page(name = "失物详情")
 public class lostDtiFragment extends BaseFragment {
-
+    public static final String KEY_TITLE = "title";
+//    public static final String KEY_Title
 
     @BindView(R.id.tv_title)
     TextView tv_name;

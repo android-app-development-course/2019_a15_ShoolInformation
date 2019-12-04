@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -96,6 +95,7 @@
                     >
                     <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
                         style="@style/superText_app"
+                        android:id="@+id/stv_lost"
                         app:sLeftTextString="寻物系统"
                         app:sRightIconRes="@drawable/ic_lost"
                         />

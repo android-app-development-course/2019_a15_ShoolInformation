@@ -27,9 +27,11 @@ public class GoodCardViewListAdapter extends BaseRecyclerAdapter<GoodInfo> {
     protected void bindData(@NonNull RecyclerViewHolder holder, int position, GoodInfo item) {
         if (item != null){
             holder.text(R.id.tv_price, item.getPrice());
-            holder.text(R.id.tv_tag, item.getTag());
+            holder.text(R.id.tv_tag, item.getDealWay());
             holder.text(R.id.tv_summary, item.getDescription());
             holder.text(R.id.tv_title, item.getGoodName());
+            holder.text(R.id.tv_time, item.getTime());
+            holder.image(R.id.iv_image, item.getImageUrl());
         }
     }
 }

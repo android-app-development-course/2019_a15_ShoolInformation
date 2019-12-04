@@ -35,7 +35,11 @@ public class Utils {
         }
         if (header != null) {
             smartRefreshLayout.setRefreshHeader(header);
-            smartRefreshLayout.autoRefresh();
+            //下拉时列表不移动
+            smartRefreshLayout.setEnableHeaderTranslationContent(false);
+            //上拉下载时禁止其他操作
+            smartRefreshLayout.setDisableContentWhenLoading(true);
+            smartRefreshLayout.setDisableContentWhenRefresh(true);
         }
     }
 

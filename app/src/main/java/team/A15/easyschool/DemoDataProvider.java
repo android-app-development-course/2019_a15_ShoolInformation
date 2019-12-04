@@ -88,7 +88,7 @@ public class DemoDataProvider {
         NewsInfo newsInfo = new NewsInfo();
         newsInfo.setSummary("11月18日上午，华南师范大学2019年教学节暨双创周开幕式在石牌校区国际会议厅 ...");
         newsInfo.setReadingNum("388");
-        newsInfo.setTime("2019-11-20 16:52:17");
+        newsInfo.setDate("2019-11-20 16:52:17");
         newsInfo.setTitle("我校举办首届教学节暨双创周开幕式");
         newsInfo.setImageUrl("https://news.scnu.edu.cn/media/image/2019/11/201911203439b4.jpg");
         newsInfo.setUrl("https://news.scnu.edu.cn/28259");
@@ -96,7 +96,7 @@ public class DemoDataProvider {
         NewsInfo newsInfo1 = new NewsInfo();
         newsInfo1.setSummary("为进一步学习领会习近平总书记提出“人工智能是新一轮科技革命和产业变革的重要驱动力 ...");
         newsInfo1.setReadingNum("371");
-        newsInfo1.setTime("2019-11-20 10:40:10");
+        newsInfo1.setDate("2019-11-20 10:40:10");
         newsInfo1.setTitle("金耀初为党委中心理论学习扩大会议作“人工智能”专题辅导报告");
         newsInfo1.setImageUrl("https://news.scnu.edu.cn/media/image/2019/11/20191119af9a34.jpg");
         newsInfo1.setUrl("https://news.scnu.edu.cn/28249");
@@ -107,13 +107,24 @@ public class DemoDataProvider {
     public static List<GoodInfo> getGoodsList(){
         List<GoodInfo> list = new ArrayList<>();
         GoodInfo goodInfo = new GoodInfo();
-        goodInfo.setGoodName("JAVA编程艺术");
-        goodInfo.setDescription("大一上用书");
-        goodInfo.setPrice("98");
-        goodInfo.setContactInfo("手机号：13229798448");
-        goodInfo.setTag("计算机书籍");
-        goodInfo.setTime("2019.01.04");
+        goodInfo.setGoodName("三体");
+        goodInfo.setDescription("去年购入，一套全有，95新，无笔记，无折角");
+        goodInfo.setPrice("70");
+        goodInfo.setContactInfo("13229798448（手机号）");
+        goodInfo.setImageUrl("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574830701878&di=2b17a638319e3068649526244d34b9d5&imgtype=jpg&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D2944261094%2C2808495216%26fm%3D214%26gp%3D0.jpg");
+        goodInfo.setDealWay("大学城面交");
+        goodInfo.setTime("2019.11.27");
         list.add(goodInfo);
+
+        GoodInfo goodInfo1 = new GoodInfo();
+        goodInfo1.setGoodName("蓝月亮洗衣液");
+        goodInfo1.setDescription("双十一购入，买太多了，现出两瓶500ml的");
+        goodInfo1.setPrice("40");
+        goodInfo1.setContactInfo("石牌东十九XXX敲门面交");
+        goodInfo1.setImageUrl("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574830833738&di=fad19cef6b3062a890b84af5c305e418&imgtype=0&src=http%3A%2F%2Fpic5.58cdn.com.cn%2Fzhuanzh%2Fn_v2634e206e722249a290e0e323b64bac02.jpg%3Fw%3D750%26h%3D0");
+        goodInfo1.setDealWay("石牌面交");
+        goodInfo1.setTime("2019.11.27");
+        list.add(goodInfo1);
         return list;
     }
 

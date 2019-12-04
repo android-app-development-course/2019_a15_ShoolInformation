@@ -30,7 +30,7 @@ public class lostCardViewAdapter extends BaseRecyclerAdapter<LostInfo> {
             holder.text(R.id.tv_title, item.getTitle());
             holder.text(R.id.tv_contactWay, item.getContactWay());
             holder.text(R.id.tv_detail, item.getDetail());
-            holder.text(R.id.tv_time, item.getTime());
+            holder.text(R.id.tv_time, item.getDate());
         }
     }
 }

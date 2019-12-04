@@ -2,7 +2,6 @@ package team.A15.easyschool.adapter.enity;
 
 
 import cn.bmob.v3.BmobObject;
-import cn.bmob.v3.datatype.BmobDate;
 
 /**
  * @package: team.A15.easyschool.adapter.enity
@@ -31,14 +30,14 @@ public class LostInfo extends BmobObject {
     /**
      * 发布时间
      */
-    private String time;
+    private String date;
 
-    public String getTime() {
-        return time;
+    public String getDate() {
+        return date;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getTitle() {

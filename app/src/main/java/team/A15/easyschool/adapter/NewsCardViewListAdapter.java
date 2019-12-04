@@ -27,7 +27,7 @@ public class NewsCardViewListAdapter extends BaseRecyclerAdapter<NewsInfo> {
     @Override
     protected void bindData(@NonNull RecyclerViewHolder holder, int position, NewsInfo item) {
         if (item != null){
-            holder.text(R.id.tv_time, item.getTime());
+            holder.text(R.id.tv_time, item.getDate());
             holder.text(R.id.tv_summary, item.getSummary());
             holder.text(R.id.tv_title, item.getTitle());
             holder.text(R.id.tv_read, "阅读量 " + item.getReadingNum());

@@ -13,7 +13,7 @@ public class NewsInfo {
     /**
      * 发布时间
      */
-    private String time;
+    private String date;
     /**
      * 标题
      */
@@ -52,12 +52,12 @@ public class NewsInfo {
         this.summary = summary;
     }
 
-    public String getTime() {
-        return time;
+    public String getDate() {
+        return date;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getTitle() {

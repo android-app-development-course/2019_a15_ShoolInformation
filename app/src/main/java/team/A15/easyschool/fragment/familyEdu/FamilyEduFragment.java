@@ -18,6 +18,8 @@
 package team.A15.easyschool.fragment.familyEdu;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +30,10 @@ import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xui.adapter.recyclerview.RecyclerViewHolder;
 import com.xuexiang.xui.utils.WidgetUtils;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
+import com.xuexiang.xui.widget.statelayout.MultipleStatusView;
 
+
+import java.util.List;
 
 import butterknife.BindView;
 import team.A15.easyschool.DemoDataProvider;
@@ -67,12 +72,37 @@ public class FamilyEduFragment extends BaseFragment {
     RecyclerView recyclerView;
 
     /**
+     * 状态页面
+     */
+    @BindView(R.id.multiple_status_view)
+    MultipleStatusView multipleStatusView;
+
+    /**
      * 悬浮按钮
      */
     @BindView(R.id.fab)
     FloatingActionButton floatingActionButton;
 
     private FamilyEduCardViewListAdapter familyEduCardViewListAdapter;
+
+    private List<FamilyEduInfo> dataList;
+
+    private Handler loadingHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if (multipleStatusView.getViewStatus() == MultipleStatusView.STATUS_LOADING) {
+                if (dataList.isEmpty()){
+                    multipleStatusView.showEmpty();
+                }else{
+                    multipleStatusView.showContent();
+                }
+
+            }
+            return true;
+        }
+    });
+
+
 
     @Override
     protected int getLayoutId() {
@@ -90,12 +120,34 @@ public class FamilyEduFragment extends BaseFragment {
 //        循环列表
         WidgetUtils.initRecyclerView(recyclerView, 0);
         recyclerView.setAdapter(familyEduCardViewListAdapter = new FamilyEduCardViewListAdapter());
-        familyEduCardViewListAdapter.refresh(DemoDataProvider.getFamilyEduInfoList());
-//        recyclerView.setEnabled(false);
-
-        floatingActionButton.setVisibility(View.INVISIBLE);
-
+        floatingActionButton.setVisibility(View.GONE);
+        //是否联网
+        if (false){
+            multipleStatusView.showNoNetwork();
+        }else {
+            //加载数据
+            dataList = DemoDataProvider.getFamilyEduInfoList();
+            multipleStatusView.showLoading();
+            loadingHandler.sendEmptyMessageDelayed(0, 5000);
+            //开一个线程加载数据
+        }
+        //加载数据
+        familyEduCardViewListAdapter.refresh(dataList);
     }
+
+    final View.OnClickListener mRetryClickListener = (new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            //如果网络正常
+            if (false){
+                //加载数据
+                multipleStatusView.showLoading();
+                loadingHandler.sendEmptyMessageDelayed(0, 3000);
+            }else{
+                multipleStatusView.showNoNetwork();
+            }
+        }
+    });
 
     @Override
     protected void initListeners() {
@@ -117,9 +169,7 @@ public class FamilyEduFragment extends BaseFragment {
             refreshLayout.finishLoadMore();
         },2000));
 
-        //上拉下载时禁止其他操作
-        smartRefreshLayout.setDisableContentWhenLoading(true);
-        smartRefreshLayout.setDisableContentWhenRefresh(true);
+
 
         familyEduCardViewListAdapter.setOnItemClickListener((itemView, item, position) -> {
             Bundle params = new Bundle();
