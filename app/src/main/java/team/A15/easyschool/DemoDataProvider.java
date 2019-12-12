@@ -17,14 +17,26 @@
 
 package team.A15.easyschool;
 
+import android.graphics.BitmapFactory;
+
+import com.xuexiang.xaop.logger.XLogger;
 import com.xuexiang.xui.widget.banner.widget.banner.BannerItem;
 
+import java.lang.reflect.Array;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.DownloadFileListener;
+import cn.bmob.v3.listener.FindListener;
 import team.A15.easyschool.adapter.enity.FamilyEduInfo;
 import team.A15.easyschool.adapter.enity.GoodInfo;
 import team.A15.easyschool.adapter.enity.NewsInfo;
+import team.A15.easyschool.utils.XToastUtils;
 
 //import com.xuexiang.xuidemo.adapter.entity.NewInfo;
 //import com.xuexiang.xuidemo.fragment.components.imageview.preview.ImageViewInfo;
@@ -37,6 +49,17 @@ import team.A15.easyschool.adapter.enity.NewsInfo;
  * @since 2018/11/23 下午5:52
  */
 public class DemoDataProvider {
+
+    /**
+     * 页数
+     */
+    private static final int pageLimit = 10;
+
+    /**
+     *
+     */
+    private static int goodSkipPage = 0;
+
 
     public static String[] titles = new String[]{
             "https://news.scnu.edu.cn/28034",
@@ -111,9 +134,8 @@ public class DemoDataProvider {
         goodInfo.setDescription("去年购入，一套全有，95新，无笔记，无折角");
         goodInfo.setPrice("70");
         goodInfo.setContactInfo("13229798448（手机号）");
-        goodInfo.setImageUrl("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574830701878&di=2b17a638319e3068649526244d34b9d5&imgtype=jpg&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D2944261094%2C2808495216%26fm%3D214%26gp%3D0.jpg");
+        //goodInfo.setImageUrl("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574830701878&di=2b17a638319e3068649526244d34b9d5&imgtype=jpg&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D2944261094%2C2808495216%26fm%3D214%26gp%3D0.jpg");
         goodInfo.setDealWay("大学城面交");
-        goodInfo.setTime("2019.11.27");
         list.add(goodInfo);
 
         GoodInfo goodInfo1 = new GoodInfo();
@@ -121,11 +143,20 @@ public class DemoDataProvider {
         goodInfo1.setDescription("双十一购入，买太多了，现出两瓶500ml的");
         goodInfo1.setPrice("40");
         goodInfo1.setContactInfo("石牌东十九XXX敲门面交");
-        goodInfo1.setImageUrl("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574830833738&di=fad19cef6b3062a890b84af5c305e418&imgtype=0&src=http%3A%2F%2Fpic5.58cdn.com.cn%2Fzhuanzh%2Fn_v2634e206e722249a290e0e323b64bac02.jpg%3Fw%3D750%26h%3D0");
+        //goodInfo1.setImageUrl("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574830833738&di=fad19cef6b3062a890b84af5c305e418&imgtype=0&src=http%3A%2F%2Fpic5.58cdn.com.cn%2Fzhuanzh%2Fn_v2634e206e722249a290e0e323b64bac02.jpg%3Fw%3D750%26h%3D0");
         goodInfo1.setDealWay("石牌面交");
-        goodInfo1.setTime("2019.11.27");
         list.add(goodInfo1);
         return list;
+//        List<GoodInfo> retult = new ArrayList<GoodInfo>();
+//        BmobQuery<GoodInfo> query = new BmobQuery<>();
+//        query.setLimit(pageLimit).setSkip(goodSkipPage).order("-createdAt").findObjects(new FindListener<GoodInfo>() {
+//            @Override
+//            public void done(List<GoodInfo> list, BmobException e) {
+//
+//            }
+//        });
+//        goodSkipPage++;
+//        return retult;
     }
 
 //    public static List<Object> getUsertGuides() {

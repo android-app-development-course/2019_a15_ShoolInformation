@@ -23,6 +23,8 @@ import android.content.Context;
 import androidx.multidex.MultiDex;
 
 
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobConfig;
 import team.A15.easyschool.utils.sdkinit.UMengInit;
 import team.A15.easyschool.utils.sdkinit.XBasicLibInit;
 import team.A15.easyschool.utils.sdkinit.XUpdateInit;
@@ -43,6 +45,21 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        //bomnb后端云配置
+        //Bmob.initialize(this, "Your Application ID");
+        BmobConfig config =new BmobConfig.Builder(this)
+        //设置appkey
+        .setApplicationId("f5ea42d9b4df2c098b1865cf7d2a5735")
+        //请求超时时间（单位为秒）：默认15s
+        .setConnectTimeout(30)
+        //文件分片上传时每片的大小（单位字节），默认512*1024
+        .setUploadBlockSize(1024*1024)
+        //文件的过期时间(单位为秒)：默认1800s
+        .setFileExpiration(2500)
+        .build();
+
+        Bmob.initialize(config);
         initLibs();
     }
 

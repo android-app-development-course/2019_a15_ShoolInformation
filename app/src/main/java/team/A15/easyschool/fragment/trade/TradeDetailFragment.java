@@ -1,34 +1,19 @@
-package team.A15.easyschool.fragment.SecHandGood;
+package team.A15.easyschool.fragment.trade;
 
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.xuexiang.xaop.logger.XLogger;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.utils.TitleBar;
 import com.xuexiang.xrouter.annotation.AutoWired;
 import com.xuexiang.xrouter.launcher.XRouter;
 import com.xuexiang.xui.utils.StatusBarUtils;
-import com.xuexiang.xui.widget.imageview.RadiusImageView;
-
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import butterknife.BindView;
 import team.A15.easyschool.R;
@@ -42,10 +27,10 @@ import team.A15.easyschool.utils.XToastUtils;
  * @date: 2019/11/24 10:17
  * @version: 1.0
  */
-@Page(name = "物品详情", params = {SecHandDtiFragment.KEY_NAME, SecHandDtiFragment.KEY_PRICE,
-        SecHandDtiFragment.KEY_CONTACT_WAY, SecHandDtiFragment.KEY_DESCRIPTION,
-        SecHandDtiFragment.KEY_DEAl_WAY, SecHandDtiFragment.KEY_IMAGE_URL})
-public class SecHandDtiFragment extends BaseFragment {
+@Page(name = "物品详情", params = {TradeDetailFragment.KEY_NAME, TradeDetailFragment.KEY_PRICE,
+        TradeDetailFragment.KEY_CONTACT_WAY, TradeDetailFragment.KEY_DESCRIPTION,
+        TradeDetailFragment.KEY_DEAl_WAY, TradeDetailFragment.KEY_IMAGE_URL})
+public class TradeDetailFragment extends BaseFragment {
     public final static String KEY_IMAGE_URL = "imageURL";
     public final static String KEY_NAME = "name";
     public final static String KEY_PRICE = "price";
@@ -116,9 +101,10 @@ public class SecHandDtiFragment extends BaseFragment {
     @BindView(R.id.tv_deal_way)
     TextView tv_dealWay;
 
+
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_second_hand_deatil;
+        return R.layout.fragment_trade_deatil;
     }
 
     @Override

@@ -75,7 +75,7 @@ public class lostFragment extends BaseFragment {
             }
         });
         //新建失物消息
-        floatingActionButton.setOnClickListener(view -> openPage(lostNewFragment.class));
+        floatingActionButton.setOnClickListener(view -> openPage(lostCreateFragment.class));
     }
 
     @Override

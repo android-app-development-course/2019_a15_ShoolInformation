@@ -19,7 +19,6 @@
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:titleTextColor="@color/white"
             android:fitsSystemWindows="false"/>
-
     </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -38,17 +37,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:overScrollMode="never" />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="72dp"
+                android:src="@drawable/ic_add_white_24dp"
+                app:layout_behavior="@string/xui_float_behavior" />
         </com.xuexiang.xui.widget.statelayout.MultipleStatusView>
+
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="72dp"
-        android:src="@drawable/ic_add_white_24dp"
-        app:layout_behavior="@string/xui_float_behavior" />
+
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package team.A15.easyschool.fragment.SecHandGood;
+package team.A15.easyschool.fragment.trade;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,7 +20,6 @@ import butterknife.BindView;
 import team.A15.easyschool.DemoDataProvider;
 import team.A15.easyschool.R;
 import team.A15.easyschool.adapter.GoodCardViewListAdapter;
-import team.A15.easyschool.adapter.enity.FamilyEduInfo;
 import team.A15.easyschool.adapter.enity.GoodInfo;
 import team.A15.easyschool.core.BaseFragment;
 import team.A15.easyschool.utils.Utils;
@@ -33,7 +32,7 @@ import team.A15.easyschool.utils.Utils;
  * @version: 1.0
  */
 @Page(name = "闲置交易")
-public class SecHandFragment extends BaseFragment {
+public class TradeFragment extends BaseFragment {
 
     /**
      * 标题栏
@@ -108,6 +107,7 @@ public class SecHandFragment extends BaseFragment {
         }
         //加载数据
         adapter.refresh(dataList);
+
     }
 
     @Override
@@ -123,17 +123,17 @@ public class SecHandFragment extends BaseFragment {
         adapter.setOnItemClickListener((itemView, item, position) -> {
             Bundle params = new Bundle();
             XLogger.i(item.getGoodName());
-            params.putString(SecHandDtiFragment.KEY_NAME, item.getGoodName());
-            params.putString(SecHandDtiFragment.KEY_PRICE, item.getPrice());
-            params.putString(SecHandDtiFragment.KEY_CONTACT_WAY, item.getContactInfo());
-            params.putString(SecHandDtiFragment.KEY_DESCRIPTION, item.getDescription());
-            params.putString(SecHandDtiFragment.KEY_DEAl_WAY, item.getDealWay());
-            params.putString(SecHandDtiFragment.KEY_IMAGE_URL, item.getImageUrl());
-            openPage(SecHandDtiFragment.class, params);
+            params.putString(TradeDetailFragment.KEY_NAME, item.getGoodName());
+            params.putString(TradeDetailFragment.KEY_PRICE, item.getPrice());
+            params.putString(TradeDetailFragment.KEY_CONTACT_WAY, item.getContactInfo());
+            params.putString(TradeDetailFragment.KEY_DESCRIPTION, item.getDescription());
+            params.putString(TradeDetailFragment.KEY_DEAl_WAY, item.getDealWay());
+            //params.putString(TradeDetailFragment.KEY_IMAGE_URL, item.getImageUrl());
+            openPage(TradeDetailFragment.class, params);
         });
 
         //发帖
-        floatingActionButton.setOnClickListener(view -> openPage(SecHandNewFragment.class));
+        floatingActionButton.setOnClickListener(view -> openPage(TradeCreateFragment.class));
     }
 
 }

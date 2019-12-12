@@ -23,22 +23,12 @@ public class GoodInfo extends BmobObject {
      */
     private String description;
 
-//    /**
-//     * 物品图片
-//     * 后期要改为后端云对应类型
-//     */
-//    private BmobFile image;
+    /**
+     * 物品图片
+     * 后期要改为后端云对应类型
+     */
+    private String imageUrl;
 
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String imageUrl;
     /**
      * 物品价格
      */
@@ -54,10 +44,7 @@ public class GoodInfo extends BmobObject {
      */
     private String dealWay;
 
-    /**
-     * 发布时间
-     */
-    private String time;
+
 
     public String getGoodName() {
         return GoodName;
@@ -75,13 +62,13 @@ public class GoodInfo extends BmobObject {
         this.description = description;
     }
 
-//    public BmobFile getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(BmobFile image) {
-//        this.image = image;
-//    }
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public String getPrice() {
         return price;
@@ -105,13 +92,5 @@ public class GoodInfo extends BmobObject {
 
     public void setDealWay(String dealWay) {
         this.dealWay = dealWay;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 }

@@ -32,8 +32,9 @@ import team.A15.easyschool.R;
 import team.A15.easyschool.core.BaseFragment;
 import team.A15.easyschool.core.webview.AgentWebActivity;
 import team.A15.easyschool.fragment.familyEdu.FamilyEduFragment;
-import team.A15.easyschool.fragment.SecHandGood.SecHandFragment;
+import team.A15.easyschool.fragment.trade.TradeFragment;
 import team.A15.easyschool.fragment.lost.lostFragment;
+
 import team.A15.easyschool.widget.RadiusImageBanner;
 
 
@@ -104,10 +105,10 @@ public class HomeFragment extends BaseFragment {
             openNewPage(lostFragment.class);
         });
 
-        secondHand.setOnSuperTextViewClickListener(superTextView -> openNewPage(SecHandFragment.class));
+        secondHand.setOnSuperTextViewClickListener(superTextView -> openNewPage(TradeFragment.class));
 
 //        轮播图点击跳转
-        radiusImageBanner.setOnItemClickL(position -> AgentWebActivity.goWeb(getContext(), bannerData.get(position).getTitle()));
+        radiusImageBanner.setOnItemClickListener((view, item, position) -> AgentWebActivity.goWeb(getContext(), bannerData.get(position).getTitle()));
     }
 
 

@@ -10,10 +10,10 @@ import team.A15.easyschool.core.BaseFragment;
  * @date: 2019/11/26 23:51
  * @version: 1.0
  */
-public class lostNewFragment extends BaseFragment {
+public class lostCreateFragment extends BaseFragment {
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_lost_new;
+        return R.layout.fragment_lost_create;
     }
 
     @Override

@@ -12,30 +12,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                android:id="@+id/stv_name"
-                style="@style/EditInfoItem"
-                app:sEditTextButtonType="clear"
-                app:sEditTextHint="物品名称" />
 
-            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                android:id="@+id/stv_price"
+
+            <EditText
+                android:id="@+id/et_name"
+                style="@style/EditInfoItem"
+                android:hint="物品名称"
+                />
+
+            <EditText
+                android:id="@+id/et_price"
                 style="@style/EditInfoItem"
                 android:inputType="number"
-                app:sEditTextButtonType="clear"
-                app:sEditTextHint="价格" />
+                android:hint="价格"
+                />
 
-            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                android:id="@+id/stv_deal_way"
+            <EditText
+                android:id="@+id/et_deal_way"
                 style="@style/EditInfoItem"
-                app:sEditTextButtonType="clear"
-                app:sEditTextHint="交易方式，如大学城校区北区面交，快递等" />
+                android:hint="交易方式，如大学城校区北区面交/快递等"
+                />
 
-            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                android:id="@+id/stv_contact_way"
+            <EditText
+                android:id="@+id/et_contact_way"
                 style="@style/EditInfoItem"
-                app:sEditTextButtonType="none"
-                app:sEditTextHint="联系方式，如微信号、手机号" />
+                android:hint="联系方式，如微信号、手机号"
+                />
 
             <com.xuexiang.xui.widget.edittext.MultiLineEditText
                 android:id="@+id/et_description"
@@ -45,7 +47,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp" />
 
+            <ImageButton
+                android:id="@+id/btn_add_pic"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_add_white_24dp"
+                android:background="@color/xui_config_color_gray_9"/>
+
             <com.xuexiang.xui.widget.button.roundbutton.RoundButton
+                android:id="@+id/btn_send"
                 style="@style/RoundButton.Auto"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center"
@@ -55,7 +68,7 @@
                 android:textSize="20sp"
                 android:textColor="@color/xui_default_round_btn_white_text"
                 app:rb_backgroundColor="@color/xui_config_color_blue"/>
+
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

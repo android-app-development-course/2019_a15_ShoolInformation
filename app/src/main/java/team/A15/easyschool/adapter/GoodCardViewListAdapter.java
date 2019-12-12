@@ -20,7 +20,7 @@ public class GoodCardViewListAdapter extends BaseRecyclerAdapter<GoodInfo> {
 
     @Override
     protected int getItemLayoutId(int viewType) {
-        return R.layout.adapter_goods_card_viewlist_item;
+        return R.layout.adapter_trade_card_viewlist_item;
     }
 
     @Override
@@ -30,8 +30,7 @@ public class GoodCardViewListAdapter extends BaseRecyclerAdapter<GoodInfo> {
             holder.text(R.id.tv_tag, item.getDealWay());
             holder.text(R.id.tv_summary, item.getDescription());
             holder.text(R.id.tv_title, item.getGoodName());
-            holder.text(R.id.tv_time, item.getTime());
-            holder.image(R.id.iv_image, item.getImageUrl());
+            holder.text(R.id.tv_time, item.getCreatedAt());
         }
     }
 }

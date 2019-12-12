@@ -32,7 +32,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 import team.A15.easyschool.R;
+import team.A15.easyschool.adapter.enity.TeamInfo;
 import team.A15.easyschool.core.BaseActivity;
 import team.A15.easyschool.core.BaseFragment;
 import team.A15.easyschool.fragment.familyEdu.FamilyEduFragment;
@@ -42,6 +46,7 @@ import team.A15.easyschool.fragment.news.NewsFragment;
 import team.A15.easyschool.fragment.profile.ProfileFragment;
 import team.A15.easyschool.utils.XToastUtils;
 import com.xuexiang.xaop.annotation.SingleClick;
+import com.xuexiang.xaop.logger.XLogger;
 import com.xuexiang.xui.adapter.FragmentAdapter;
 import com.xuexiang.xui.utils.ResUtils;
 import com.xuexiang.xui.utils.StatusBarUtils;
@@ -111,6 +116,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         //设置标题栏
         mTitles = ResUtils.getStringArray(R.array.home_titles);
         toolbar.setTitle(mTitles[0]);
+
+
 
         initHeader();
 

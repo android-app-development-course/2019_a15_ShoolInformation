@@ -21,7 +21,7 @@ public class lostCardViewAdapter extends BaseRecyclerAdapter<LostInfo> {
 
     @Override
     protected int getItemLayoutId(int viewType) {
-        return R.layout.adapter_lost_card_view_list_item;
+        return R.layout.adapter_lost_card_viewlist_item;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class lostCardViewAdapter extends BaseRecyclerAdapter<LostInfo> {
             holder.text(R.id.tv_title, item.getTitle());
             holder.text(R.id.tv_contactWay, item.getContactWay());
             holder.text(R.id.tv_detail, item.getDetail());
-            holder.text(R.id.tv_time, item.getDate());
+            holder.text(R.id.tv_time, item.getCreatedAt());
         }
     }
 }

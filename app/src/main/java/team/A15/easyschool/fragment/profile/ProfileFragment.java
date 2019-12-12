@@ -78,7 +78,7 @@ public class ProfileFragment extends BaseFragment implements SuperTextView.OnSup
 
     @SingleClick
     @Override
-    public void onClickListener(SuperTextView view) {
+    public void onClick(SuperTextView view) {
         switch(view.getId()) {
             case R.id.menu_settings:
                 openNewPage(SettingsFragment.class);
@@ -90,4 +90,5 @@ public class ProfileFragment extends BaseFragment implements SuperTextView.OnSup
                 break;
         }
     }
+
 }

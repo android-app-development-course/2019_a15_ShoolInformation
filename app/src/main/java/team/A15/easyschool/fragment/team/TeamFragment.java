@@ -3,14 +3,12 @@ package team.A15.easyschool.fragment.team;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xuexiang.xpage.annotation.Page;
-import com.xuexiang.xui.adapter.recyclerview.RecyclerViewHolder;
 import com.xuexiang.xui.utils.WidgetUtils;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
 import com.xuexiang.xui.widget.statelayout.MultipleStatusView;
@@ -22,7 +20,7 @@ import team.A15.easyschool.R;
 import team.A15.easyschool.adapter.TeamCardViewListAdapter;
 import team.A15.easyschool.adapter.enity.TeamInfo;
 import team.A15.easyschool.core.BaseFragment;
-import team.A15.easyschool.fragment.lost.lostNewFragment;
+import team.A15.easyschool.fragment.lost.lostCreateFragment;
 import team.A15.easyschool.utils.Utils;
 
 /**
@@ -137,7 +135,7 @@ public class TeamFragment extends BaseFragment {
 //                params.putString();
         });
         //新建失物消息
-        floatingActionButton.setOnClickListener(view -> openPage(lostNewFragment.class));
+        floatingActionButton.setOnClickListener(view -> openPage(lostCreateFragment.class));
     }
 
     @Override
