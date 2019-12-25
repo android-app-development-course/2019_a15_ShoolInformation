@@ -17,6 +17,7 @@
 
 package team.A15.easyschool.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -33,10 +34,10 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.BmobUser;
 import team.A15.easyschool.R;
-import team.A15.easyschool.adapter.enity.TeamInfo;
+import team.A15.easyschool.adapter.enity.FamilyEduInfo;
+import team.A15.easyschool.adapter.enity.User;
 import team.A15.easyschool.core.BaseActivity;
 import team.A15.easyschool.core.BaseFragment;
 import team.A15.easyschool.fragment.familyEdu.FamilyEduFragment;
@@ -46,7 +47,6 @@ import team.A15.easyschool.fragment.news.NewsFragment;
 import team.A15.easyschool.fragment.profile.ProfileFragment;
 import team.A15.easyschool.utils.XToastUtils;
 import com.xuexiang.xaop.annotation.SingleClick;
-import com.xuexiang.xaop.logger.XLogger;
 import com.xuexiang.xui.adapter.FragmentAdapter;
 import com.xuexiang.xui.utils.ResUtils;
 import com.xuexiang.xui.utils.StatusBarUtils;
@@ -54,6 +54,10 @@ import com.xuexiang.xui.widget.imageview.RadiusImageView;
 import com.xuexiang.xutil.XUtil;
 import com.xuexiang.xutil.common.ClickUtils;
 import com.xuexiang.xutil.common.CollectionUtils;
+import com.xuexiang.xutil.display.Colors;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -68,7 +72,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     /**
      * 标题栏
      */
-    @BindView(R.id.toolbar)
+    @BindView(R.id.title_bar)
     Toolbar toolbar;
 
     /**
@@ -88,6 +92,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
      */
     @BindView(R.id.nav_view)
     NavigationView navView;
+
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
@@ -102,9 +107,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         initViews();
 
         initListeners();
+
     }
 
     @Override
@@ -116,11 +123,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         //设置标题栏
         mTitles = ResUtils.getStringArray(R.array.home_titles);
         toolbar.setTitle(mTitles[0]);
-
-
-
         initHeader();
-
         //主页内容填充
         BaseFragment[] fragments = new BaseFragment[]{
                 new HomeFragment(),
@@ -143,9 +146,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         TextView tvAvatar = headerView.findViewById(R.id.tv_avatar);
         TextView tvSign = headerView.findViewById(R.id.tv_sign);
 
-        // TODO: 2019-10-09 初始化数据
         ivAvatar.setImageResource(R.drawable.ic_default_head);
-        tvAvatar.setText(R.string.app_name);
+        if (User.isLogin()) {
+            User user = BmobUser.getCurrentUser(User.class);
+            tvAvatar.setText(user.getNickname());
+        } else {
+            tvAvatar.setText("请登录");
+        }
         tvSign.setText("这个家伙很懒，什么也没有留下～～");
 
         navHeader.setOnClickListener(this);
