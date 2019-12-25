@@ -7,7 +7,6 @@ import com.xuexiang.xui.adapter.recyclerview.RecyclerViewHolder;
 
 import team.A15.easyschool.R;
 import team.A15.easyschool.adapter.enity.TeamInfo;
-import team.A15.easyschool.core.BaseFragment;
 
 /**
  * @package: team.A15.easyschool.adapter.enity
@@ -26,10 +25,10 @@ public class TeamCardViewListAdapter extends BaseRecyclerAdapter<TeamInfo> {
     protected void bindData(@NonNull RecyclerViewHolder holder, int position, TeamInfo item) {
         if (item != null){
             holder.text(R.id.tv_title, item.getTitle());
-            holder.text(R.id.tv_time, item.getDate());
+            holder.text(R.id.tv_date, item.getCreatedAt());
+            holder.text(R.id.tv_requirement,item.getCampus());
             holder.text(R.id.tv_detail, item.getDetail());
-            holder.text(R.id.tv_summary, item.getSummary());
-            holder.text(R.id.tv_area, item.getArea());
+//            holder.text(R.id.tv_campus, item.getCampus());
         }
     }
 }

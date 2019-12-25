@@ -159,6 +159,9 @@ dependencies {
     implementation 'com.squareup.okio:okio:2.1.0'
     implementation 'com.google.code.gson:gson:2.8.5'
 
+    //爬虫
+    implementation 'org.jsoup:jsoup:1.11.3'
+
 }
 
 //walle多渠道打包
