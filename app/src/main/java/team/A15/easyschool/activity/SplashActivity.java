@@ -44,7 +44,7 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
      */
     @Override
     protected void onCreateActivity() {
-        initSplashView(R.drawable.start_image);
+        //initSplashView(R.drawable.start_image);
         startSplash(false);
     }
 
