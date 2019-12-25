@@ -1,14 +1,24 @@
 package team.A15.easyschool.fragment.familyEdu;
 
+import android.view.View;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xrouter.annotation.AutoWired;
 import com.xuexiang.xrouter.launcher.XRouter;
+import com.xuexiang.xui.XUI;
+import com.xuexiang.xui.utils.DensityUtils;
+import com.xuexiang.xui.widget.actionbar.TitleBar;
+import com.xuexiang.xui.widget.popupwindow.popup.XUIPopup;
 
 import butterknife.BindView;
 import team.A15.easyschool.R;
 import team.A15.easyschool.core.BaseFragment;
+
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 /**
  * @package: team.A15.easyschool.fragment.FamilyEdu
@@ -69,6 +79,7 @@ public class FamilyEduDtiFragment extends BaseFragment {
     @BindView(R.id.tv_subject)
     TextView tv_subject;
 
+    private XUIPopup normalPopup;
 
     @Override
     protected int getLayoutId() {
@@ -94,4 +105,39 @@ public class FamilyEduDtiFragment extends BaseFragment {
         tv_sex.setText("学生性别：" + sex);
     }
 
+    @Override
+    protected TitleBar initTitle() {
+        TitleBar titleBar = super.initTitle();
+        titleBar.addAction(new TitleBar.ImageAction(R.drawable.icon_action_about) {
+            @Override
+            public void performAction(View view) {
+                initNormalPopupIfNeed();
+                normalPopup.setAnimStyle(XUIPopup.ANIM_GROW_FROM_CENTER);
+                normalPopup.setPreferredDirection(XUIPopup.DIRECTION_TOP);
+                normalPopup.show(view);
+            }
+        });
+        return null;
+    }
+
+
+    private void initNormalPopupIfNeed() {
+        if (normalPopup == null) {
+            normalPopup = new XUIPopup(getContext());
+            TextView textView = new TextView(getContext());
+            textView.setLayoutParams(normalPopup.generateLayoutParam(
+                    DensityUtils.dp2px(getContext(), 250),
+                    WRAP_CONTENT
+            ));
+            textView.setLineSpacing(DensityUtils.dp2px(4), 1.0f);
+            int padding = DensityUtils.dp2px(20);
+            textView.setPadding(padding, padding, padding, padding);
+            textView.setText(getResources().getText(R.string.family_edu_tip));
+            textView.setTextColor(ContextCompat.getColor(getContext(), R.color.xui_config_color_content_text));
+            textView.setTypeface(XUI.getDefaultTypeface());
+            normalPopup.setContentView(textView);
+            normalPopup.setOnDismissListener(() -> {
+            });
+        }
+    }
 }

@@ -17,26 +17,31 @@
 
 package team.A15.easyschool.fragment.familyEdu;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.xuexiang.xaop.logger.XLogger;
 import com.xuexiang.xpage.annotation.Page;
-import com.xuexiang.xui.adapter.recyclerview.RecyclerViewHolder;
 import com.xuexiang.xui.utils.WidgetUtils;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
 import com.xuexiang.xui.widget.statelayout.MultipleStatusView;
 
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import team.A15.easyschool.DemoDataProvider;
 import team.A15.easyschool.R;
 import team.A15.easyschool.adapter.FamilyEduCardViewListAdapter;
 import team.A15.easyschool.adapter.enity.FamilyEduInfo;
@@ -56,7 +61,7 @@ public class FamilyEduFragment extends BaseFragment {
     /**
      * 标题栏
      */
-    @BindView(R.id.toolbar)
+    @BindView(R.id.title_bar)
     TitleBar titleBar;
 
     /**
@@ -77,32 +82,13 @@ public class FamilyEduFragment extends BaseFragment {
     @BindView(R.id.multiple_status_view)
     MultipleStatusView multipleStatusView;
 
-    /**
-     * 悬浮按钮
-     */
-    @BindView(R.id.fab)
-    FloatingActionButton floatingActionButton;
-
     private FamilyEduCardViewListAdapter familyEduCardViewListAdapter;
 
-    private List<FamilyEduInfo> dataList;
+    private List<FamilyEduInfo> familyEduInfoList;
 
-    private Handler loadingHandler = new Handler(new Handler.Callback() {
-        @Override
-        public boolean handleMessage(Message msg) {
-            if (multipleStatusView.getViewStatus() == MultipleStatusView.STATUS_LOADING) {
-                if (dataList.isEmpty()){
-                    multipleStatusView.showEmpty();
-                }else{
-                    multipleStatusView.showContent();
-                }
+    private int page = 1;
 
-            }
-            return true;
-        }
-    });
-
-
+    private Handler loadingHandler;
 
     @Override
     protected int getLayoutId() {
@@ -114,39 +100,29 @@ public class FamilyEduFragment extends BaseFragment {
      */
     @Override
     protected void initViews(){
+        loadingHandler = new Handler(msg -> {
+            if (multipleStatusView != null && multipleStatusView.getViewStatus() == MultipleStatusView.STATUS_LOADING) {
+                if (familyEduInfoList.isEmpty()){
+                    multipleStatusView.showEmpty();
+                }else{
+                    multipleStatusView.showContent();
+//                    floatingActionButton.setVisibility(View.GONE);
+                }
+            }
+            return true;
+        });
+
 //        初始化smartlayout
         Utils.initSmartRefreshLayout(this, smartRefreshLayout, getResources().getString(R.string.style_refresh_layout));
-
 //        循环列表
         WidgetUtils.initRecyclerView(recyclerView, 0);
         recyclerView.setAdapter(familyEduCardViewListAdapter = new FamilyEduCardViewListAdapter());
-        floatingActionButton.setVisibility(View.GONE);
-        //是否联网
-        if (false){
-            multipleStatusView.showNoNetwork();
-        }else {
-            //加载数据
-            dataList = DemoDataProvider.getFamilyEduInfoList();
-            multipleStatusView.showLoading();
-            loadingHandler.sendEmptyMessageDelayed(0, 5000);
-            //开一个线程加载数据
-        }
-        //加载数据
-        familyEduCardViewListAdapter.refresh(dataList);
+        familyEduInfoList = new ArrayList<>();
+        loadData();
     }
 
-    final View.OnClickListener mRetryClickListener = (new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            //如果网络正常
-            if (false){
-                //加载数据
-                multipleStatusView.showLoading();
-                loadingHandler.sendEmptyMessageDelayed(0, 3000);
-            }else{
-                multipleStatusView.showNoNetwork();
-            }
-        }
+    final View.OnClickListener retryClickListener = (v -> {
+        loadData();
     });
 
     @Override
@@ -156,8 +132,10 @@ public class FamilyEduFragment extends BaseFragment {
             /**
              * 下拉刷新动作
              */
+            familyEduInfoList.clear();
+            page = 1;
+            new FamilyEduAsyncTask().execute(page++);
             refreshLayout.finishRefresh();
-            refreshLayout.resetNoMoreData();
         },2000));
 
 
@@ -166,10 +144,11 @@ public class FamilyEduFragment extends BaseFragment {
             /**
              * 上拉加载更多动作
              */
-            refreshLayout.finishLoadMore();
+            new FamilyEduAsyncTask().execute(page++);
+            refreshLayout.finishLoadMore(true);
         },2000));
 
-
+        multipleStatusView.setOnRetryClickListener(retryClickListener);
 
         familyEduCardViewListAdapter.setOnItemClickListener((itemView, item, position) -> {
             Bundle params = new Bundle();
@@ -189,5 +168,49 @@ public class FamilyEduFragment extends BaseFragment {
         titleBar.setTitle(getPageName());
         titleBar.setLeftClickListener(view -> popToBack());
         return null;
+    }
+
+    private void loadData(){
+        if (Utils.isNetworkConnected(getContext())){
+            new FamilyEduAsyncTask().execute(page++);
+            multipleStatusView.showLoading();
+            loadingHandler.sendEmptyMessageDelayed(0, 3000);
+        }else {
+            multipleStatusView.showNoNetwork();
+        }
+    }
+
+    /**
+     * 爬异步类
+     */
+    class FamilyEduAsyncTask extends AsyncTask<Integer, Void, Void>{
+        @Override
+        protected Void doInBackground(Integer... integers) {
+            Document document = null;
+            try {
+                document = Jsoup.connect("http://module.scnu.edu.cn/index.php?m=familyedu&c=index&a=index&siteid=126&page=" + integers[0]).get();
+                Elements elements = document.select(".table-list").select("tbody").select("tr");
+                for (Element element : elements) {
+                    FamilyEduInfo familyEduInfo = new FamilyEduInfo();
+                    familyEduInfo.setNum(element.select("td").get(0).text());
+                    familyEduInfo.setArea(element.select("td").get(1).text());
+                    familyEduInfo.setStuGrade(element.select("td").get(2).text());
+                    familyEduInfo.setStuSex(element.select("td").get(3).text());
+                    familyEduInfo.setSubject(element.select("td").get(4).text());
+                    familyEduInfo.setRequirement(element.select("td").get(6).text());
+                    familyEduInfo.setDetail(element.select("td").get(7).text());
+                    XLogger.e(familyEduInfo.toString());
+                    familyEduInfoList.add(familyEduInfo);
+                }
+            } catch (IOException e) {
+                XLogger.e(e);
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            familyEduCardViewListAdapter.refresh(familyEduInfoList);
+        }
     }
 }
