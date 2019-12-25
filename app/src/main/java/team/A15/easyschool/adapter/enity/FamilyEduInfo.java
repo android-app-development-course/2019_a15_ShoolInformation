@@ -93,14 +93,17 @@ public class FamilyEduInfo {
         this.requirement = requirement;
     }
 
-    public FamilyEduInfo(String num, String area, String stuGrade, String stuSex, String subject, String requirement, String detail) {
-        this.num = num;
-        this.area = area;
-        this.stuGrade = stuGrade;
-        this.stuSex = stuSex;
-        this.subject = subject;
-        this.requirement = requirement;
-        this.detail = detail;
+    @Override
+    public String toString() {
+        return "FamilyEduInfo{" +
+                "num='" + num + '\'' +
+                ", area='" + area + '\'' +
+                ", stuGrade='" + stuGrade + '\'' +
+                ", stuSex='" + stuSex + '\'' +
+                ", subject='" + subject + '\'' +
+                ", requirement='" + requirement + '\'' +
+                ", detail='" + detail + '\'' +
+                '}';
     }
 }
 

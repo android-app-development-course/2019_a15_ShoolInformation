@@ -26,6 +26,18 @@ public class LostInfo extends BmobObject {
      */
     private String contactWay;
 
+    /**
+     * 图片链接
+     */
+    private String imageUrl;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public String getTitle() {
         return title;

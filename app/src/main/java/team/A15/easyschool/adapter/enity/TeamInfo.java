@@ -16,10 +16,6 @@ public class TeamInfo extends BmobObject {
      */
     private String title;
 
-    /**
-     * 摘要
-     */
-    private String summary;
 
     /**
      * 详细描述
@@ -33,9 +29,19 @@ public class TeamInfo extends BmobObject {
     private String date;
 
     /**
-     * 区域
+     * 校区
      */
-    private String area;
+    private String campus;
+
+    public String getContactWay() {
+        return contactWay;
+    }
+
+    public void setContactWay(String contactWay) {
+        this.contactWay = contactWay;
+    }
+
+    private String contactWay;
 
     public String getTitle() {
         return title;
@@ -45,13 +51,6 @@ public class TeamInfo extends BmobObject {
         this.title = title;
     }
 
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
 
     public String getDetail() {
         return detail;
@@ -69,11 +68,22 @@ public class TeamInfo extends BmobObject {
         this.date = date;
     }
 
-    public String getArea() {
-        return area;
+    public String getCampus() {
+        return campus;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setCampus(String campus) {
+        this.campus = campus;
+    }
+
+    @Override
+    public String toString() {
+        return "TeamInfo{" +
+                "title='" + title + '\'' +
+                ", detail='" + detail + '\'' +
+                ", date='" + date + '\'' +
+                ", campus='" + campus + '\'' +
+                ", contactWay='" + contactWay + '\'' +
+                '}';
     }
 }
