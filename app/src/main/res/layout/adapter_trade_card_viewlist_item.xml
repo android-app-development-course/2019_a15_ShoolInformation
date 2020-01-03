@@ -4,18 +4,14 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/activity_horizontal_margin"
-    android:layout_marginEnd="@dimen/activity_horizontal_margin"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="6dp"
     app:cardBackgroundColor="@color/xui_config_color_white"
-    app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
     app:cardPreventCornerOverlap="true"
     app:contentPaddingTop="5dp"
     app:contentPaddingBottom="10dp"
     app:contentPaddingLeft="@dimen/activity_horizontal_margin"
     app:contentPaddingRight="@dimen/activity_horizontal_margin">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,6 +41,7 @@
                     style="@style/TextStyle.Explain"
                     android:layout_gravity="end|center_vertical"
                     android:layout_marginStart="10dp"
+                    android:textSize="14sp"
                     android:text="xuexiangjys"
                     android:textColor="@color/xui_config_color_pure_black" />
             </LinearLayout>
@@ -52,7 +49,8 @@
             <TextView
                 android:id="@+id/tv_tag"
                 style="@style/TextStyle.Explain"
-                android:padding="1dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
                 android:textColor="@color/white"
                 android:layout_gravity="end|center_vertical"
                 android:background="@color/xui_config_color_50_blue"
@@ -107,7 +105,7 @@
 
         </LinearLayout>
         <TextView
-            android:id="@+id/tv_read"
+            android:id="@+id/tv_time"
             style="@style/TextStyle.Explain"
             android:layout_gravity="center_vertical|start"
             android:text="发布时间" />

@@ -1,50 +1,42 @@
-/*
- * Copyright (C) 2019 xuexiangjys(xuexiangjys@163.com)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
 package team.A15.easyschool.fragment.home;
 
 
+import android.content.Intent;
+
+import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
-import com.xuexiang.xui.widget.banner.widget.banner.BannerItem;
 
 import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
 
-import java.util.List;
-
 import butterknife.BindView;
+import cn.bmob.v3.BmobUser;
 import team.A15.easyschool.DemoDataProvider;
 import team.A15.easyschool.R;
+import team.A15.easyschool.activity.LoginActivity;
+import team.A15.easyschool.activity.MainActivity;
+import team.A15.easyschool.adapter.enity.User;
 import team.A15.easyschool.core.BaseFragment;
 import team.A15.easyschool.core.webview.AgentWebActivity;
+import team.A15.easyschool.fragment.LoginFragment;
+import team.A15.easyschool.fragment.SettingsFragment;
+import team.A15.easyschool.fragment.errands.ErrandFragment;
 import team.A15.easyschool.fragment.familyEdu.FamilyEduFragment;
+import team.A15.easyschool.fragment.team.TeamFragment;
 import team.A15.easyschool.fragment.trade.TradeFragment;
-import team.A15.easyschool.fragment.lost.lostFragment;
+import team.A15.easyschool.fragment.lost.LostFragment;
 
+import team.A15.easyschool.widget.MyBannerItemList;
 import team.A15.easyschool.widget.RadiusImageBanner;
 
 
 @Page
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment implements SuperTextView.OnSuperTextViewClickListener {
 
     /**
      * 轮播条数据
      */
-    private List<BannerItem> bannerData;
+    private MyBannerItemList myBannerItemList;
 
     /**
      * 轮播条
@@ -71,7 +63,13 @@ public class HomeFragment extends BaseFragment {
     SuperTextView emptyClassrom;
 
     @BindView(R.id.stv_second_hand)
-    SuperTextView secondHand;
+    SuperTextView trade;
+
+    @BindView(R.id.stv_team)
+    SuperTextView team;
+
+    @BindView(R.id.stv_errand)
+    SuperTextView errand;
 
 
     @Override
@@ -81,39 +79,65 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void initViews() {
-        //banner的数据传进去
-        bannerData = DemoDataProvider.getBannerList();
-        radiusImageBanner.setSource(bannerData).startScroll();
+        myBannerItemList = new MyBannerItemList();
+        myBannerItemList.getBannerItemList().addAll(DemoDataProvider.getBannerList());
+        radiusImageBanner.setSource(myBannerItemList.getBannerItemList()).startScroll();
+
     }
 
     @Override
     protected void initListeners() {
-
-//        家教信息跳转
-        familyEdu.setOnSuperTextViewClickListener(superTextView -> {
-            openNewPage(FamilyEduFragment.class);
+        familyEdu.setOnSuperTextViewClickListener(this);
+        emptyClassrom.setOnSuperTextViewClickListener(this);
+        lost.setOnSuperTextViewClickListener(this);
+        trade.setOnSuperTextViewClickListener(this);
+        team.setOnSuperTextViewClickListener(this);
+        radiusImageBanner.setOnItemClickListener((view, item, position) -> {
+            AgentWebActivity.goWeb(getContext(), myBannerItemList.getBannerItemList().get(position).getTitle());
         });
+        errand.setOnSuperTextViewClickListener(this);
 
-//        空课室跳转
-        emptyClassrom.setOnSuperTextViewClickListener(superTextView -> {
-            String url = "https://i.scnu.edu.cn/zixi/?from=qrcode";
-            AgentWebActivity.goWeb(getContext(), url);
-        });
-
-//      寻物系统
-        lost.setOnSuperTextViewClickListener(superTextView -> {
-            openNewPage(lostFragment.class);
-        });
-
-        secondHand.setOnSuperTextViewClickListener(superTextView -> openNewPage(TradeFragment.class));
-
-//        轮播图点击跳转
-        radiusImageBanner.setOnItemClickListener((view, item, position) -> AgentWebActivity.goWeb(getContext(), bannerData.get(position).getTitle()));
     }
-
-
     @Override
     protected TitleBar initTitle() {
         return null;
     }
+
+    @SingleClick
+    @Override
+    public void onClick(SuperTextView view) {
+        if (!User.isLogin()) {
+            Intent intent = new Intent(getActivity(),LoginActivity.class);
+            startActivity(intent);
+        }else{
+            switch(view.getId()) {
+                case R.id.stv_family_edu:
+                    //  家教信息跳转
+                    openNewPage(FamilyEduFragment.class);
+                    break;
+                case R.id.stv_lost:
+                    // 寻物系统
+                    openNewPage(LostFragment.class);
+                    break;
+                case R.id.stv_empty_classrom:
+                    // 空课室跳转
+                    String url = "https://i.scnu.edu.cn/zixi/?from=qrcode";
+                    AgentWebActivity.goWeb(getContext(), url);
+                    break;
+                case R.id.stv_second_hand:
+                    openNewPage(TradeFragment.class);
+                    break;
+                case R.id.stv_team:
+                    openNewPage(TeamFragment.class);
+                    break;
+                case R.id.stv_errand:
+                    openNewPage(ErrandFragment.class);
+                default:
+                    break;
+            }
+        }
+    }
+
+
 }
+

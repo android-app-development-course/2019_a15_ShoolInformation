@@ -18,6 +18,7 @@
 package team.A15.easyschool.fragment.news;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,7 @@ import com.scwang.smartrefresh.layout.adapter.SmartViewHolder;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+import com.xuexiang.xaop.logger.XLogger;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xui.adapter.FragmentAdapter;
 import com.xuexiang.xui.adapter.recyclerview.RecyclerViewHolder;
@@ -38,10 +40,21 @@ import com.xuexiang.xui.widget.actionbar.TitleBar;
 import com.xuexiang.xui.widget.statelayout.StatefulLayout;
 import com.xuexiang.xutil.net.NetworkUtils;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import team.A15.easyschool.DemoDataProvider;
 import team.A15.easyschool.R;
 import team.A15.easyschool.adapter.NewsCardViewListAdapter;
+import team.A15.easyschool.adapter.enity.FamilyEduInfo;
+import team.A15.easyschool.adapter.enity.NewsInfo;
 import team.A15.easyschool.core.BaseFragment;
 import team.A15.easyschool.core.webview.AgentWebActivity;
 import team.A15.easyschool.utils.Utils;
@@ -61,6 +74,10 @@ public class NewsFragment extends BaseFragment {
 
     private NewsCardViewListAdapter adapter;
 
+    private List<NewsInfo> newsInfoList;
+
+    private int page = 1;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_news;
@@ -71,8 +88,8 @@ public class NewsFragment extends BaseFragment {
         Utils.initSmartRefreshLayout(this,smartRefreshLayout, getResources().getString(R.string.style_refresh_layout));
         WidgetUtils.initRecyclerView(recyclerView, DensityUtils.dp2px(5), ThemeUtils.resolveColor(getContext(), R.attr.xui_config_color_background));
         recyclerView.setAdapter(adapter = new NewsCardViewListAdapter());
-        adapter.refresh(DemoDataProvider.getDemoNewInfos());
-
+        newsInfoList = new ArrayList<>();
+        new NewsAsyncTask().execute(page++);
     }
 
     /**
@@ -97,13 +114,10 @@ public class NewsFragment extends BaseFragment {
              */
             @Override
             public void onLoadMore(@NonNull final RefreshLayout refreshLayout) {
-                refreshLayout.getLayout().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        adapter.loadMore(DemoDataProvider.getDemoNewInfos());
-                        refreshLayout.finishLoadMore();
-                    }
-                }, 1000);
+                refreshLayout.getLayout().postDelayed(() -> {
+                    new NewsAsyncTask().execute(page++);
+                    refreshLayout.finishLoadMore();
+                }, 5000);
             }
 
             /**
@@ -112,13 +126,12 @@ public class NewsFragment extends BaseFragment {
              */
             @Override
             public void onRefresh(@NonNull final RefreshLayout refreshLayout) {
-                refreshLayout.getLayout().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-//                        adapter.refresh(DemoDataProvider.getDemoNewInfos());
-                        refreshLayout.finishRefresh();
-                    }
-                }, 3000);
+                refreshLayout.getLayout().postDelayed(() -> {
+                    newsInfoList.clear();
+                    page = 1;
+                    new NewsAsyncTask().execute(page++);
+                    refreshLayout.finishRefresh();
+                }, 5000);
             }
         });
 
@@ -135,5 +148,49 @@ public class NewsFragment extends BaseFragment {
     @Override
     protected com.xuexiang.xpage.utils.TitleBar initTitleBar() {
         return null;
+    }
+
+    /**
+     * 新闻爬虫
+     */
+    class NewsAsyncTask extends AsyncTask<Integer, Void, Void> {
+        @Override
+        protected Void doInBackground(Integer... integers) {
+            Document document = null;
+            try {
+                document = Jsoup.connect("https://news.scnu.edu.cn/t/" + integers[0]).get();
+                for (int i = 1; i <= 10; i++){
+                    NewsInfo newsInfo = new NewsInfo();
+                    String title = document.select("#tag-article > li:nth-child(" + i + ") > span > a").text();
+                    String summary = document.select("#tag-article > li:nth-child(" + i + ") > p").text();
+                    String temp = document.select("#tag-article > li:nth-child(" + i + ") > div.tpinfo").text();
+                    String date = temp.substring(0, temp.indexOf("|")).trim();
+                    String readingNum = temp.substring(temp.indexOf("|") + 1, temp.lastIndexOf("|")).trim();
+                    newsInfo.setTitle(title);
+                    newsInfo.setSummary(summary);
+                    newsInfo.setReadingNum(readingNum);
+                    newsInfo.setDate(date);
+
+                    //设置图片链接
+                    temp = document.select("#tag-article > li:nth-child(" + i + ") > div.img-thumb > img").attr("src");
+                    String imageUrl = "https://news.scnu.edu.cn/" + temp.substring(0, temp.lastIndexOf('.'));
+                    newsInfo.setImageUrl(imageUrl);
+
+                    //设置跳转链接
+                    temp = document.select("#tag-article > li:nth-child(" + i + ") > span > a").attr("href");
+                    String url = "https://news.scnu.edu.cn" + temp;
+                    newsInfo.setUrl(url);
+                    newsInfoList.add(newsInfo);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            adapter.refresh(newsInfoList);
+        }
     }
 }

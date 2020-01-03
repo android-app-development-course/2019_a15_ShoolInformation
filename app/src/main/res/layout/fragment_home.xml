@@ -72,6 +72,7 @@
                     style="@style/application_button"
                     >
                     <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                        android:id="@+id/stv_team"
                         style="@style/superText_app"
                         app:sLeftTextString="比赛组队"
                         app:sRightIconRes="@drawable/ic_team"
@@ -85,6 +86,7 @@
                     >
                     <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
                         style="@style/superText_app"
+                        android:id="@+id/stv_errand"
                         app:sLeftTextString="有偿跑腿"
                         app:sRightIconRes="@drawable/ic_errands"
                         />

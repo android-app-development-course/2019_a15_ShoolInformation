@@ -22,6 +22,12 @@ import android.graphics.BitmapFactory;
 import com.xuexiang.xaop.logger.XLogger;
 import com.xuexiang.xui.widget.banner.widget.banner.BannerItem;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
@@ -90,20 +96,32 @@ public class DemoDataProvider {
     }
 
     public static List<FamilyEduInfo> getFamilyEduInfoList(){
-        List<FamilyEduInfo> list = new ArrayList<>();
-        list.add(new FamilyEduInfo("203929", "黄埔区", "一年级、四年级",
-                "男", "小学全科作业辅导", "未填写 / /",
-                "【请两名教师轮流辅导】学生是一名一年级、一名四年级两个孩子，成绩中上，现想请2名教师轮流进行作业辅导。要求教师有教学方法，师范生或教师父母是教师者优先。辅导时间：一周5次，周一至周五晚18:00开始辅导，2h/次，可以留教师吃饭，饭前饭后各辅导1h。辅导价格：50元/h，报销车费。辅导地点：黄埔区丰乐南路金逸雅居。参考路线【本部】地铁华师站→地铁裕丰围站（换乘2次，共13站）约35mins；【大学城】地铁大学城北站→地铁裕丰围站（换乘2次，共7站）约25mins")
-        );
-        list.add(new FamilyEduInfo("203583", "番禺区", "初三",
-                "男", "生物", "女",
-                "【请1~2位教师分别轮流辅导】 学生是一位初一男生，做作业不够自觉，想请1~2位教师分别轮流辅导全科作业，主要是监督和答疑 要求教师：男生优先，研究生优先 辅导时间：周一至周五晚7：30~9:30，具体时间协商，2h/次，5次周 辅导价格：60元/h，数学系，英语系，研究生70元/h，不报销车费 辅导地点：天河区林和东路中怡城市花园 参考路线：【本部】地铁华师站→地铁林和西站（换乘一次共4站）约15mins【大学城】地铁大学城北站（换乘三次共10站）约35mins")
-        );
-        list.add(new FamilyEduInfo("9530", "越秀区", "初二",
-                "女", "地理", "男",
-                "【紧急家教】学生是一位一年级的女生，有点小顽皮，现想找一位教师辅导其全科。要求教师是女教师，仪态端正。 辅导时间：3-4次/周，2h/次，周一至周五19:00-21:00、周末，具体协商。 辅导价格：50-70元/h，具体协商，报销车费。 辅导地点：天河区元邦明月星辉小区。 参考路线：【本部】地铁华师站→地铁长寿路站（换乘1次，共11站）约35min【大学城】地铁大学城北站→地铁长寿路站（换乘3次，共18站）约55min")
-        );
-        return list;
+        List<FamilyEduInfo> familyEduInfoList = new ArrayList<>();
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Document document = Jsoup.connect("http://module.scnu.edu.cn/index.php?m=familyedu&c=index&a=index&siteid=126&page=1").get();
+                    Elements elements = document.select(".table-list").select("tbody").select("tr");
+                    for (Element element : elements){
+                        FamilyEduInfo familyEduInfo = new FamilyEduInfo();
+                        familyEduInfo.setNum(element.select("td").get(0).text());
+                        familyEduInfo.setArea(element.select("td").get(1).text());
+                        familyEduInfo.setStuGrade(element.select("td").get(2).text());
+                        familyEduInfo.setStuSex(element.select("td").get(3).text());
+                        familyEduInfo.setSubject(element.select("td").get(4).text());
+                        familyEduInfo.setRequirement(element.select("td").get(6).text());
+                        familyEduInfo.setDetail(element.select("td").get(7).text());
+                        XLogger.e(familyEduInfo.toString());
+                        familyEduInfoList.add(familyEduInfo);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+        return familyEduInfoList;
     }
 
     public static List<NewsInfo> getDemoNewInfos(){

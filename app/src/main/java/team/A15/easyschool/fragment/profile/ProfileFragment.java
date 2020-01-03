@@ -17,11 +17,12 @@
 
 package team.A15.easyschool.fragment.profile;
 
+import cn.bmob.v3.BmobUser;
 import team.A15.easyschool.R;
 import team.A15.easyschool.core.BaseFragment;
-import team.A15.easyschool.fragment.AboutFragment;
 import team.A15.easyschool.fragment.SettingsFragment;
 import com.xuexiang.xaop.annotation.SingleClick;
+import com.xuexiang.xaop.logger.XLogger;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
@@ -42,6 +43,8 @@ public class ProfileFragment extends BaseFragment implements SuperTextView.OnSup
     SuperTextView menuSettings;
     @BindView(R.id.menu_about)
     SuperTextView menuAbout;
+    @BindView(R.id.menu_exit)
+    SuperTextView menuExit;
 
     /**
      * @return 返回为 null意为不需要导航栏
@@ -72,7 +75,7 @@ public class ProfileFragment extends BaseFragment implements SuperTextView.OnSup
     @Override
     protected void initListeners() {
         menuSettings.setOnSuperTextViewClickListener(this);
-        menuAbout.setOnSuperTextViewClickListener(this);
+        menuExit.setOnSuperTextViewClickListener(this);
 
     }
 
@@ -83,8 +86,9 @@ public class ProfileFragment extends BaseFragment implements SuperTextView.OnSup
             case R.id.menu_settings:
                 openNewPage(SettingsFragment.class);
                 break;
-            case R.id.menu_about:
-                openNewPage(AboutFragment.class);
+            case R.id.menu_exit:
+                BmobUser.logOut();
+                XLogger.e("147");
                 break;
             default:
                 break;

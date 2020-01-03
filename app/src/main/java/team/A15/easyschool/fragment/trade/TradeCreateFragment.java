@@ -59,7 +59,7 @@ public class TradeCreateFragment extends BaseFragment {
     @BindView(R.id.btn_send)
     Button btnSend;
 
-    private List<LocalMedia> mSelectList = new ArrayList<>();
+    private List<LocalMedia> localMediaList = new ArrayList<>();
 
     @BindView(R.id.btn_add_pic)
     ImageButton btnAddPic;
@@ -85,14 +85,12 @@ public class TradeCreateFragment extends BaseFragment {
         switch (view.getId()){
             case R.id.btn_add_pic:
                 Utils.getPictureSelector(this)
-                        .selectionMedia(mSelectList)
+                        .selectionMedia(localMediaList)
                         .maxSelectNum(1)
                         .selectionMode(PictureConfig.SINGLE)
                         .forResult(PictureConfig.CHOOSE_REQUEST);
                 break;
             case R.id.btn_send:
-
-                //
                 boolean textEmpty = etName.getText().toString().isEmpty() ||
                         etPrice.getText().toString().isEmpty()||
                         etDescription.getEditText().getText().toString().isEmpty() ||
@@ -106,6 +104,7 @@ public class TradeCreateFragment extends BaseFragment {
                     goodInfo.setPrice(etPrice.getText().toString().trim());
                     goodInfo.setDescription(etDescription.getEditText().getText().toString().trim());
                     goodInfo.setContactInfo(etContactWay.getText().toString().trim());
+                    goodInfo.setDealWay(etDealWay.getText().toString().trim());
                     if (imagefile != null && imagefile.exists()){
                         BmobFile bmobFile = new BmobFile(imagefile);
                         bmobFile.uploadblock(new UploadFileListener() {
@@ -143,8 +142,8 @@ public class TradeCreateFragment extends BaseFragment {
             switch (requestCode) {
                 case PictureConfig.CHOOSE_REQUEST:
                     // 图片选择
-                    mSelectList = PictureSelector.obtainMultipleResult(data);
-                    String imagePath = mSelectList.get(0).getCompressPath();
+                    localMediaList = PictureSelector.obtainMultipleResult(data);
+                    String imagePath = localMediaList.get(0).getCompressPath();
                     imagefile = new File(imagePath);
                     if (imagefile.exists()){
                         XToastUtils.success("添加图片成功");

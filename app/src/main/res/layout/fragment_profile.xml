@@ -55,9 +55,10 @@
                     app:sLeftTextString="通知" />
 
                 <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                    android:id="@+id/menu_exit"
                     style="@style/InfoItem.Account"
                     app:sDividerLineType="none"
-                    app:sLeftTextString="收藏" />
+                    app:sLeftTextString="退出" />
 
 
                 <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
