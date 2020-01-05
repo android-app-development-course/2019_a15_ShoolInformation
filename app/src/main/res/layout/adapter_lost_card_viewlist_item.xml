@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    app:cardBackgroundColor="@color/xui_config_color_white"
+    app:cardElevation="4dp"
+    app:cardPreventCornerOverlap="true"
+    app:contentPaddingTop="5dp"
+    app:contentPaddingBottom="10dp"
+    app:contentPaddingLeft="@dimen/activity_horizontal_margin"
+    app:contentPaddingRight="@dimen/activity_horizontal_margin">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    style="@style/TextStyle.Content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:singleLine="false"
+                    android:textSize="16sp"
+                    android:gravity="top|start"
+                    android:text="深度解析RocketMQ消息发送的高可用设计"
+                    android:textColor="@color/xui_config_color_pure_black" />
+
+                <TextView
+                    android:id="@+id/tv_summary"
+                    style="@style/TextStyle.Explain"
+                    android:layout_marginTop="3dp"
+                    android:ellipsize="end"
+                    android:gravity="bottom|start"
+                    android:maxLines="2"
+                    android:singleLine="false"
+                    android:text="从rocketmq topic的创建机制可知，一个topic对应有多个消息队列，那么我们在发送消息时，是如何选择消息队列进行发送的？"
+                    android:textColor="?attr/xui_config_color_content_text" />
+
+            </LinearLayout>
+
+            <com.xuexiang.xui.widget.imageview.RadiusImageView
+                android:id="@+id/iv_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/xui_ic_default_img"
+                app:riv_border_width="0dp"
+                app:riv_corner_radius="5dp" />
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/TextStyle.Explain"
+            android:layout_gravity="center_vertical|start"
+            android:text="发布时间" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
