@@ -17,7 +17,10 @@
 
 package team.A15.easyschool.fragment.profile;
 
+<<<<<<< HEAD
 import cn.bmob.v3.Bmob;
+=======
+>>>>>>> e80037e324b37d3a0ca518247e75550bcf51037b
 import cn.bmob.v3.BmobUser;
 import team.A15.easyschool.R;
 import team.A15.easyschool.core.BaseFragment;
@@ -31,7 +34,10 @@ import com.xuexiang.xui.widget.imageview.RadiusImageView;
 import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
 
 import butterknife.BindView;
+<<<<<<< HEAD
 import team.A15.easyschool.utils.XToastUtils;
+=======
+>>>>>>> e80037e324b37d3a0ca518247e75550bcf51037b
 
 /**
  * @author A15
@@ -89,12 +95,17 @@ public class ProfileFragment extends BaseFragment implements SuperTextView.OnSup
                 openNewPage(SettingsFragment.class);
                 break;
             case R.id.menu_exit:
+<<<<<<< HEAD
                 if (BmobUser.isLogin()){
                     BmobUser.logOut();
                     XToastUtils.success("退出成功");
                 }else{
                     XToastUtils.warning("未登录");
                 }
+=======
+                BmobUser.logOut();
+                XLogger.e("147");
+>>>>>>> e80037e324b37d3a0ca518247e75550bcf51037b
                 break;
             default:
                 break;
