@@ -106,17 +106,10 @@ public class HomeFragment extends BaseFragment implements SuperTextView.OnSuperT
     @SingleClick
     @Override
     public void onClick(SuperTextView view) {
-<<<<<<< HEAD
 //        if (!User.isLogin()) {
 //            Intent intent = new Intent(getActivity(),LoginActivity.class);
 //            startActivity(intent);
 //        }else{
-=======
-        if (!User.isLogin()) {
-            Intent intent = new Intent(getActivity(),LoginActivity.class);
-            startActivity(intent);
-        }else{
->>>>>>> e80037e324b37d3a0ca518247e75550bcf51037b
             switch(view.getId()) {
                 case R.id.stv_family_edu:
                     //  家教信息跳转
@@ -142,11 +135,7 @@ public class HomeFragment extends BaseFragment implements SuperTextView.OnSuperT
                 default:
                     break;
             }
-<<<<<<< HEAD
 //        }
-=======
-        }
->>>>>>> e80037e324b37d3a0ca518247e75550bcf51037b
     }
 
 

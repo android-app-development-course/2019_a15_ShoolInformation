@@ -212,15 +212,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.nav_header:
-<<<<<<< HEAD
 //                XToastUtils.toast("点击头部！");
                 if (!User.isLogin()) {
                     Intent intent = new Intent(this, LoginActivity.class);
                     startActivity(intent);
                 }
-=======
-                XToastUtils.toast("点击头部！");
->>>>>>> e80037e324b37d3a0ca518247e75550bcf51037b
                 break;
             case R.id.stv_family_edu:
                 openNewPage(FamilyEduFragment.class);
